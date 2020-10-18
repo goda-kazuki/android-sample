@@ -14,7 +14,6 @@
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:text="@string/tv_msg"
-        android:textColor="@color/black"
         android:textSize="25sp"/>
 
     <EditText
@@ -24,8 +23,8 @@
         android:layout_marginBottom="25dp"
         android:layout_marginTop="5dp"
         android:background="@color/white"
-        android:textColor="@color/black"
-        android:inputType="phone"/>
+        android:inputType="text"
+        android:hint="@string/tv_msg" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:background="@color/white"
-            android:textColor="@color/black"
             android:text="@string/cb_drink"/>
 
         <CheckBox
@@ -47,7 +45,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:textColor="@color/black"
             android:text="@string/cb_food"/>
     </LinearLayout>
 
@@ -68,17 +65,25 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:background="@color/white"
-            android:text="@string/rb_male"
-            android:textColor="@color/black"/>
+            android:text="@string/rb_male"/>
 
         <RadioButton
             android:id="@+id/rbFamale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:text="@string/rb_female"
-            android:textColor="@color/black"/>
+            android:text="@string/rb_female"/>
     </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spCurryList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:entries="@array/sp_currylist"
+
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
 
     <Button
         android:id="@+id/btSava"
