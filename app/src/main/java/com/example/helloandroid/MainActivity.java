@@ -3,6 +3,7 @@ package com.example.helloandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
         HelloListener helloListener=new HelloListener();
 
         btClick.setOnClickListener(helloListener);
+
+        Button btClear=findViewById(R.id.btClear);
+        btClear.setOnClickListener(helloListener);
     }
 
     private class HelloListener implements View.OnClickListener{
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view){
             EditText input=findViewById(R.id.etName);
@@ -34,7 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
             String inputStr=input.getText().toString();
 
-            output.setText(inputStr + "さん、こんにちは");
+            int id=view.getId();
+
+            switch (id){
+                case R.id.btClick:
+                    output.setText(inputStr + "さん、こんにちは");
+                    break;
+
+                case R.id.btClear:
+                    output.setText("");
+                    break;
+            }
         }
     }
+
 }
