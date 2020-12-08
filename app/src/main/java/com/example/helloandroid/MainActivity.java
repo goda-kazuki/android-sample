@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView lvMenu = findViewById(R.id.lvMenu);
 
         List<String> menuList = new ArrayList<>();
-
         menuList.add(" から揚げ定食 ");
         menuList.add(" ハンバーグ定食 ");
         menuList.add(" 生姜焼き定食 ");
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 menuList
         );
 
+        ListView lvMenu = findViewById(R.id.lvMenu);
         lvMenu.setAdapter(adapter);
     }
 }
