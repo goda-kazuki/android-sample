@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         List<String> menuList = new ArrayList<>();
         menuList.add(" から揚げ定食 ");
@@ -42,5 +43,18 @@ public class MainActivity extends AppCompatActivity {
 
         ListView lvMenu = findViewById(R.id.lvMenu);
         lvMenu.setAdapter(adapter);
+
+        // リストビューにリスナを設定。
+        lvMenu.setOnItemClickListener(new ListItemClickListener());
+    }
+
+    private class ListItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // 注文確認ダイアログフラグメントオブジェクトを生成。
+            OrderConfirmDialogFragment dialogFragment = new OrderConfirmDialogFragment();
+            // ダイアログ表示。
+            dialogFragment.show(getSupportFragmentManager(), "OrderConfirmDialogFragment");
+        }
     }
 }
