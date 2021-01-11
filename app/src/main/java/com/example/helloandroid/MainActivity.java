@@ -19,12 +19,14 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // ダークモード拒否
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    private List<Map<String,Object>> createTeishokuList(){
-        List<Map<String,Object>> menuList=new ArrayList<>();
+    private List<Map<String, Object>> createTeishokuList() {
+        List<Map<String, Object>> menuList = new ArrayList<>();
 
         //「から揚げ定食」のデータを格納するMapオブジェクトの用意とmenuListへのデータ登録。
         Map<String, Object> menu = new HashMap<>();
@@ -98,5 +100,25 @@ public class MainActivity extends AppCompatActivity {
         return menuList;
     }
 
+    /**
+     * リストがタップされたときの処理が記述されたメンバクラス。
+     */
+    private class ListItemClickListener implements AdapterView.OnItemClickListener {
 
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //タップされた行のデータを取得。
+            Map<String, Object> item = (Map<String, Object>) parent.getItemAtPosition(position);
+
+            String menuName = (String) item.get("name");
+            Integer menuPrice = (Integer) item.get("price");
+
+            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+
+            intent.putExtra("menuName", menuName);
+            intent.putExtra("menuPrice", menuPrice + "円");
+
+            startActivity(intent);
+        }
+    }
 }
