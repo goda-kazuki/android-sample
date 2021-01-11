@@ -2,61 +2,39 @@ package com.example.helloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("LifeCycleSample", "Sub onCreate() called.");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-    }
 
-    @Override
-    public void onStart() {
-        Log.i("LifeCycleSample", "Sub onStart() called.");
-        super.onStart();
-    }
+        //インテントオブジェクトを取得。
+        Intent intent = getIntent();
+        //リスト画面から渡されたデータを取得。
+        String menuName = intent.getStringExtra("menuName");
+        String menuPrice = intent.getStringExtra("menuPrice");
 
-    @Override
-    public void onRestart() {
-        Log.i("LifeCycleSample", "Sub onRestart() called.");
-        super.onRestart();
-    }
+        //定食名と金額を表示させるTextViewを取得。
+        TextView tvMenuName = findViewById(R.id.tvMenuName);
+        TextView tvMenuPrice = findViewById(R.id.tvMenuPrice);
 
-    @Override
-    public void onResume() {
-        Log.i("LifeCycleSample", "Sub onResume() called.");
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        Log.i("LifeCycleSample", "Sub onPause() called.");
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        Log.i("LifeCycleSample", "Sub onStop() called.");
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.i("LifeCycleSample", "Sub onDestroy() called.");
-        super.onDestroy();
+        //TextViewに定食名と金額を表示。
+        tvMenuName.setText(menuName);
+        tvMenuPrice.setText(menuPrice);
     }
 
     /**
-     * [前の画面を表示]ボタンがタップされたときの処理。
+     * 戻るボタンをタップした時の処理。
+     * @param view 画面部品。
      */
-    public void onButtonClick(View view) {
-// このアクティビティの終了。
+    public void onBackButtonClick(View view) {
         finish();
     }
-
 }
