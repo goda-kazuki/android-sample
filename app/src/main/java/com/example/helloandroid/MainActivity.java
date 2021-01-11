@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,12 +16,38 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private ListView _lvMenu;
+
+    private List<Map<String, Object>> _menuList;
+
+    private static final String[] FROM = {"name", "price"};
+
+    private static final int[] TO = {R.id.tvMenuName, R.id.tvMenuPrice};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // ダークモード拒否
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //画面部品ListViewを取得し、フィールドに格納。
+        _lvMenu = findViewById(R.id.lvMenu);
+
+        //SimpleAdapterで使用する定食メニューListオブジェクトをprivateメソッドを利用して用意し、フィールドに格納。
+        _menuList = createTeishokuList();
+
+        //SimpleAdapterを生成。
+        SimpleAdapter adapter = new SimpleAdapter(MainActivity.this, _menuList, R.layout.row, FROM, TO);
+
+        //アダプタの登録。
+        _lvMenu.setAdapter(adapter);
+
+        //リストタップのリスナクラス登録。
+        _lvMenu.setOnItemClickListener(new ListItemClickListener());
+
+        //コンテキストメニューをリストビューに登録。
+        registerForContextMenu(_lvMenu);
     }
 
     private List<Map<String, Object>> createTeishokuList() {
