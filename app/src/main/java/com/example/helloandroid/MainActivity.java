@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -48,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
         //コンテキストメニューをリストビューに登録。
         registerForContextMenu(_lvMenu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //メニューインフレーターの取得。
+        MenuInflater inflater = getMenuInflater();
+        //オプションメニュー用xmlファイルをインフレイト。
+        inflater.inflate(R.menu.menu_options_menu_list, menu);
+        //親クラスの同名メソッドを呼び出し、その戻り値を返却。
+        return super.onCreateOptionsMenu(menu);
     }
 
     private List<Map<String, Object>> createTeishokuList() {
